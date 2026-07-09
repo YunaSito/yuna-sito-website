@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yuna Sito | Real Estate Agent, Singapore</title>
+<style>
+  :root{
+    --bg:#0b0b0d;
+    --bg-alt:#111114;
+    --gold:#c9a24b;
+    --gold-light:#e6c877;
+    --text:#f1eee6;
+    --text-dim:#a9a49a;
+    --line:rgba(201,162,75,0.25);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3{
+    font-family:Georgia, 'Times New Roman', serif;
+    font-weight:400;
+    letter-spacing:0.02em;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  ::selection{background:var(--gold);color:#0b0b0d;}
+
+  /* NAV */
+  header{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:24px 6%;
+    background:rgba(11,11,13,0.7);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color 0.4s ease, background 0.4s ease;
+  }
+  header.scrolled{
+    border-bottom:1px solid var(--line);
+    background:rgba(11,11,13,0.92);
+  }
+  .logo{
+    font-family:Georgia, serif;
+    font-size:1.25rem;
+    letter-spacing:0.15em;
+    color:var(--gold-light);
+    text-transform:uppercase;
+  }
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:2.5rem;
+  }
+  nav a{
+    font-size:0.82rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    position:relative;
+    padding-bottom:4px;
+    transition:color 0.3s ease;
+  }
+  nav a::after{
+    content:'';
+    position:absolute;
+    left:0;bottom:0;
+    width:0;height:1px;
+    background:var(--gold);
+    transition:width 0.3s ease;
+  }
+  nav a:hover{color:var(--gold-light);}
+  nav a:hover::after{width:100%;}
+
+  .nav-toggle{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+    z-index:110;
+  }
+  .nav-toggle span{
+    width:26px;height:1px;
+    background:var(--gold-light);
+    transition:all 0.3s ease;
+  }
+
+  /* HERO */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:0 6%;
+    position:relative;
+    background:
+      radial-gradient(ellipse at 50% 20%, rgba(201,162,75,0.08), transparent 60%),
+      linear-gradient(180deg, var(--bg) 0%, #08080a 100%);
+  }
+
+  .hero::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(201,162,75,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,162,75,0.035) 1px, transparent 1px);
+    background-size:60px 60px;
+    mask-image:radial-gradient(ellipse at center, black 0%, transparent 70%);
+    pointer-events:none;
+  }
+
+  .hero-eyebrow{
+    font-size:0.78rem;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:1.8rem;
+    opacity:0;
+    animation:fadeUp 1s ease forwards 0.1s;
+  }
+
+  .hero h1{
+    font-size:clamp(2.8rem, 8vw, 6rem);
+    color:var(--text);
+    line-height:1.05;
+    opacity:0;
+    animation:fadeUp 1s ease forwards 0.35s;
+  }
+  .hero h1 .accent{
+    color:var(--gold-light);
+    font-style:italic;
+  }
+
+  .hero-title{
+    margin-top:1.4rem;
+    font-size:clamp(0.95rem, 2vw, 1.15rem);
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    opacity:0;
+    animation:fadeUp 1s ease forwards 0.6s;
+  }
+
+  .divider{
+    width:60px;
+    height:1px;
+    background:var(--gold);
+    margin:2.2rem auto;
+    opacity:0;
+    animation:fadeUp 1s ease forwards 0.8s;
+  }
+
+  .hero-tagline{
+    max-width:560px;
+    font-size:clamp(1.05rem, 2.2vw, 1.3rem);
+    color:var(--text-dim);
+    font-family:Georgia, serif;
+    font-style:italic;
+    opacity:0;
+    animation:fadeUp 1s ease forwards 1s;
+  }
+
+  .cta-btn{
+    display:inline-block;
+    margin-top:3rem;
+    padding:1.1rem 3rem;
+    border:1px solid var(--gold);
+    color:var(--gold-light);
+    font-size:0.82rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    background:transparent;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    transition:color 0.4s ease, box-shadow 0.4s ease;
+    opacity:0;
+    animation:fadeUp 1s ease forwards 1.2s;
+  }
+  .cta-btn::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:var(--gold);
+    transform:translateX(-101%);
+    transition:transform 0.45s cubic-bezier(.65,0,.35,1);
+    z-index:-1;
+  }
+  .cta-btn:hover{
+    color:#0b0b0d;
+    box-shadow:0 0 30px rgba(201,162,75,0.35);
+  }
+  .cta-btn:hover::before{transform:translateX(0);}
+
+  .scroll-hint{
+    position:absolute;
+    bottom:2.5rem;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:0.7rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    opacity:0;
+    animation:fadeUp 1s ease forwards 1.5s;
+  }
+  .scroll-hint .line{
+    width:1px;height:34px;
+    background:linear-gradient(var(--gold), transparent);
+    animation:pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(24px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @keyframes pulse{
+    0%,100%{opacity:0.3;}
+    50%{opacity:1;}
+  }
+
+  /* SECTION SHARED */
+  section{
+    padding:8rem 6%;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .section-label{
+    font-size:0.75rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--gold);
+    text-align:center;
+    margin-bottom:1rem;
+  }
+  .section-title{
+    text-align:center;
+    font-size:clamp(1.8rem, 4vw, 2.6rem);
+    color:var(--text);
+    margin-bottom:1rem;
+  }
+  .section-title .accent{color:var(--gold-light); font-style:italic;}
+  .section-intro{
+    text-align:center;
+    max-width:600px;
+    margin:0 auto 4.5rem;
+    color:var(--text-dim);
+  }
+
+  /* ABOUT */
+  .about-wrap{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:4rem;
+    align-items:center;
+  }
+  .about-portrait{
+    aspect-ratio:4/5;
+    border:1px solid var(--line);
+    background:
+      linear-gradient(160deg, #17171b, #0c0c0e);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+  .about-portrait::before{
+    content:'';
+    position:absolute;
+    inset:14px;
+    border:1px solid var(--line);
+  }
+  .about-portrait .initials{
+    font-family:Georgia, serif;
+    font-size:5rem;
+    color:var(--gold);
+    opacity:0.55;
+    letter-spacing:0.05em;
+  }
+  .about-text p{
+    color:var(--text-dim);
+    margin-bottom:1.3rem;
+  }
+  .about-stats{
+    display:flex;
+    gap:2.5rem;
+    margin-top:2.2rem;
+    flex-wrap:wrap;
+  }
+  .stat-num{
+    font-family:Georgia, serif;
+    font-size:2rem;
+    color:var(--gold-light);
+  }
+  .stat-label{
+    font-size:0.72rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    margin-top:0.3rem;
+  }
+
+  /* SERVICES */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .service-card{
+    background:var(--bg);
+    padding:3rem 2rem;
+    text-align:center;
+    transition:background 0.35s ease;
+  }
+  .service-card:hover{background:var(--bg-alt);}
+  .service-icon{
+    width:44px;height:44px;
+    margin:0 auto 1.5rem;
+    border:1px solid var(--gold);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--gold-light);
+    font-family:Georgia, serif;
+    font-size:1.1rem;
+  }
+  .service-card h3{
+    font-size:1.15rem;
+    color:var(--text);
+    margin-bottom:0.9rem;
+  }
+  .service-card p{
+    font-size:0.9rem;
+    color:var(--text-dim);
+  }
+
+  /* TESTIMONIAL */
+  .testimonial{
+    text-align:center;
+    padding:8rem 6%;
+    background:var(--bg-alt);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .testimonial blockquote{
+    max-width:700px;
+    margin:0 auto;
+    font-family:Georgia, serif;
+    font-style:italic;
+    font-size:clamp(1.2rem, 2.6vw, 1.6rem);
+    color:var(--text);
+    line-height:1.6;
+  }
+  .testimonial cite{
+    display:block;
+    margin-top:2rem;
+    font-style:normal;
+    font-size:0.78rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+
+  /* MARKET INTEL */
+  .intel-tabs{
+    display:flex;
+    justify-content:center;
+    gap:0.5rem;
+    flex-wrap:wrap;
+    margin-bottom:4rem;
+    position:sticky;
+    top:var(--intel-tabs-top, 84px);
+    z-index:20;
+    padding:1rem 0;
+    background:rgba(11,11,13,0.85);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .intel-tab{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--text-dim);
+    padding:0.85rem 1.8rem;
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:all 0.3s ease;
+    font-family:inherit;
+    display:inline-block;
+  }
+  .intel-tab:hover{color:var(--gold-light); border-color:var(--gold);}
+  .intel-tab.active{
+    background:var(--gold);
+    border-color:var(--gold);
+    color:#0b0b0d;
+  }
+
+  .intel-panel{
+    scroll-margin-top:calc(var(--intel-tabs-top, 84px) + 90px);
+    padding-top:1rem;
+  }
+  .intel-panel + .intel-panel{
+    margin-top:6rem;
+    padding-top:3rem;
+    border-top:1px solid var(--line);
+  }
+  .intel-panel-title{
+    text-align:center;
+    font-size:1.5rem;
+    color:var(--text);
+    margin-bottom:2.5rem;
+  }
+  .intel-panel-title .accent{color:var(--gold-light); font-style:italic;}
+
+  /* rates */
+  .rates-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .rate-card{
+    background:var(--bg);
+    padding:2.4rem 1.5rem;
+    text-align:center;
+  }
+  .rate-card .rate-type{
+    font-size:0.72rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:0.9rem;
+  }
+  .rate-card .rate-value{
+    font-family:Georgia, serif;
+    font-size:2.1rem;
+    color:var(--text);
+  }
+  .rate-card .rate-note{
+    font-size:0.78rem;
+    color:var(--text-dim);
+    margin-top:0.6rem;
+  }
+  .intel-disclaimer{
+    text-align:center;
+    font-size:0.8rem;
+    color:var(--text-dim);
+    margin-top:2rem;
+  }
+  .intel-disclaimer a{color:var(--gold); border-bottom:1px solid var(--gold);}
+
+  /* calculator */
+  .calculator-wrap{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:3rem;
+    border:1px solid var(--line);
+    padding:3rem;
+    background:var(--bg-alt);
+  }
+  .calc-field{margin-bottom:1.8rem;}
+  .calc-field:last-child{margin-bottom:0;}
+  .calc-field-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:0.7rem;
+  }
+  .calc-field-head label{
+    font-size:0.75rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+  }
+  .calc-field-head .calc-val{
+    color:var(--gold-light);
+    font-family:Georgia, serif;
+    font-size:1.05rem;
+  }
+  .calc-field input[type="range"]{
+    width:100%;
+    -webkit-appearance:none;
+    appearance:none;
+    height:1px;
+    background:var(--line);
+    outline:none;
+  }
+  .calc-field input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    appearance:none;
+    width:14px;height:14px;
+    border-radius:50%;
+    background:var(--gold);
+    cursor:pointer;
+    box-shadow:0 0 8px rgba(201,162,75,0.5);
+  }
+  .calc-field input[type="range"]::-moz-range-thumb{
+    width:14px;height:14px;
+    border:none;
+    border-radius:50%;
+    background:var(--gold);
+    cursor:pointer;
+    box-shadow:0 0 8px rgba(201,162,75,0.5);
+  }
+  .calc-field input[type="number"]{
+    width:100%;
+    background:transparent;
+    border:none;
+    border-bottom:1px solid var(--line);
+    color:var(--text);
+    padding:0.6rem 0.1rem;
+    font-family:Georgia, serif;
+    font-size:1.4rem;
+    outline:none;
+  }
+  .calc-field input[type="number"]:focus{border-color:var(--gold);}
+
+  .calc-results{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:1.6rem;
+    border-left:1px solid var(--line);
+    padding-left:3rem;
+  }
+  .result-item .result-label{
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--text-dim);
+    margin-bottom:0.4rem;
+  }
+  .result-item .result-value{
+    font-family:Georgia, serif;
+    font-size:1.9rem;
+    color:var(--gold-light);
+  }
+  .result-item.primary .result-value{font-size:2.5rem;}
+
+  /* market updates */
+  .market-news-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1.5rem;
+  }
+  .news-card{
+    border:1px solid var(--line);
+    padding:2.2rem;
+    transition:border-color 0.3s ease, transform 0.3s ease;
+  }
+  .news-card:hover{border-color:var(--gold); transform:translateY(-4px);}
+  .news-card .news-date{
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:1rem;
+  }
+  .news-card h3{
+    font-size:1.05rem;
+    color:var(--text);
+    margin-bottom:0.9rem;
+    line-height:1.4;
+  }
+  .news-card p{
+    font-size:0.88rem;
+    color:var(--text-dim);
+  }
+
+  /* live transactions */
+  .txn-controls{
+    display:flex;
+    justify-content:center;
+    margin-bottom:2rem;
+  }
+  .txn-controls input{
+    width:100%;
+    max-width:420px;
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--text);
+    padding:0.9rem 1.3rem;
+    font-family:inherit;
+    font-size:0.9rem;
+    outline:none;
+    transition:border-color 0.3s ease;
+  }
+  .txn-controls input::placeholder{color:var(--text-dim);}
+  .txn-controls input:focus{border-color:var(--gold);}
+
+  .txn-table-wrap{
+    border:1px solid var(--line);
+    overflow-x:auto;
+  }
+  .txn-table-wrap table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:0.86rem;
+  }
+  .txn-table-wrap th{
+    background:var(--bg-alt);
+    color:var(--gold);
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    font-size:0.7rem;
+    font-weight:400;
+    text-align:left;
+    padding:1rem 1.3rem;
+    border-bottom:1px solid var(--line);
+    white-space:nowrap;
+  }
+  .txn-table-wrap td{
+    padding:0.9rem 1.3rem;
+    border-bottom:1px solid var(--line);
+    color:var(--text-dim);
+    white-space:nowrap;
+  }
+  .txn-table-wrap tbody tr:last-child td{border-bottom:none;}
+  .txn-table-wrap tbody tr:hover td{background:rgba(201,162,75,0.05); color:var(--text);}
+  .txn-status{
+    display:none;
+    text-align:center;
+    padding:2.5rem;
+    color:var(--text-dim);
+    font-size:0.9rem;
+  }
+  .txn-meta{
+    text-align:center;
+    font-size:0.8rem;
+    color:var(--text-dim);
+    margin-top:1.2rem;
+  }
+
+  @media (max-width:860px){
+    .rates-grid{grid-template-columns:repeat(2, 1fr);}
+    .calculator-wrap{grid-template-columns:1fr; padding:2rem;}
+    .calc-results{border-left:none; border-top:1px solid var(--line); padding-left:0; padding-top:2rem;}
+    .market-news-grid{grid-template-columns:1fr;}
+  }
+
+  /* CONTACT */
+  .contact-wrap{
+    text-align:center;
+  }
+  .contact-form{
+    max-width:520px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:1.4rem;
+  }
+  .contact-form input,
+  .contact-form textarea{
+    width:100%;
+    background:transparent;
+    border:none;
+    border-bottom:1px solid var(--line);
+    color:var(--text);
+    padding:0.9rem 0.2rem;
+    font-family:inherit;
+    font-size:0.95rem;
+    outline:none;
+    transition:border-color 0.3s ease;
+  }
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder{
+    color:var(--text-dim);
+    letter-spacing:0.03em;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus{
+    border-color:var(--gold);
+  }
+  .contact-form textarea{resize:none; min-height:100px;}
+
+  .contact-wrap{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:4rem;
+    align-items:start;
+    text-align:left;
+  }
+  .contact-form{margin:0; max-width:none;}
+
+  .contact-info{
+    display:flex;
+    flex-direction:column;
+    gap:2.2rem;
+    border:1px solid var(--line);
+    background:var(--bg-alt);
+    padding:2.8rem;
+  }
+  .contact-info-item{text-align:left;}
+  .contact-info .label{
+    font-size:0.7rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:0.5rem;
+  }
+  .contact-info .value{
+    color:var(--text-dim);
+    font-size:0.95rem;
+  }
+  a.value{
+    display:inline-block;
+    transition:color 0.3s ease;
+    border-bottom:1px solid transparent;
+  }
+  a.value:hover{
+    color:var(--gold-light);
+    border-bottom-color:var(--gold);
+  }
+
+  /* WHATSAPP FLOAT */
+  .whatsapp-float{
+    position:fixed;
+    right:2rem;
+    bottom:2rem;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#25D366;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:300;
+    box-shadow:0 4px 16px rgba(0,0,0,0.4);
+    animation:waPulse 2.6s infinite;
+    transition:transform 0.3s ease;
+  }
+  .whatsapp-float:hover{transform:scale(1.08);}
+  .whatsapp-float svg{width:28px; height:28px; fill:#fff;}
+  @keyframes waPulse{
+    0%{box-shadow:0 0 0 0 rgba(37,211,102,0.55), 0 4px 16px rgba(0,0,0,0.4);}
+    70%{box-shadow:0 0 0 14px rgba(37,211,102,0), 0 4px 16px rgba(0,0,0,0.4);}
+    100%{box-shadow:0 0 0 0 rgba(37,211,102,0), 0 4px 16px rgba(0,0,0,0.4);}
+  }
+
+  .form-msg{
+    margin-top:1.5rem;
+    font-size:0.85rem;
+    letter-spacing:0.05em;
+    color:var(--gold-light);
+    min-height:1.2em;
+  }
+
+  /* FOOTER */
+  footer{
+    padding:3rem 6%;
+    text-align:center;
+    border-top:1px solid var(--line);
+    color:var(--text-dim);
+    font-size:0.78rem;
+    letter-spacing:0.08em;
+  }
+  footer .logo{
+    display:block;
+    margin-bottom:0.8rem;
+    font-size:1.1rem;
+  }
+
+  /* reveal on scroll */
+  .reveal{
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width:860px){
+    .about-wrap{grid-template-columns:1fr;}
+    .services-grid{grid-template-columns:1fr;}
+    .contact-wrap{grid-template-columns:1fr;}
+  }
+  @media (max-width:720px){
+    nav ul{
+      position:fixed;
+      top:0;right:0;
+      height:100vh;
+      width:70%;
+      max-width:300px;
+      background:#0d0d10;
+      flex-direction:column;
+      justify-content:center;
+      align-items:flex-start;
+      padding:0 3rem;
+      gap:2rem;
+      transform:translateX(100%);
+      transition:transform 0.4s ease;
+      border-left:1px solid var(--line);
+    }
+    nav ul.open{transform:translateX(0);}
+    .nav-toggle{display:flex;}
+    .contact-info{gap:1.8rem;}
+    .whatsapp-float{width:52px; height:52px; right:1.2rem; bottom:1.2rem;}
+    .whatsapp-float svg{width:25px; height:25px;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="logo">Yuna Sito</div>
+  <nav>
+    <ul id="navMenu">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#market-intel">Market Intel</a></li>
+      <li><a href="#testimonial">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow">Singapore Real Estate</div>
+  <h1>Yuna <span class="accent">Sito</span></h1>
+  <div class="hero-title">Real Estate Agent</div>
+  <div class="divider"></div>
+  <p class="hero-tagline">Making Property Decisions Simple &amp; Strategic</p>
+  <a href="#contact" class="cta-btn">Book a Consultation</a>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <span class="line"></span>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-label">About</div>
+  <h2 class="section-title">A Considered Approach to <span class="accent">Property</span></h2>
+  <div class="about-wrap">
+    <div class="about-portrait reveal"><span class="initials">YS</span></div>
+    <div class="about-text reveal">
+      <p>With years of dedicated experience in Singapore's residential and luxury property market, I help clients navigate every stage of buying, selling, and investing with clarity and confidence.</p>
+      <p>My approach blends sharp market insight with genuine, personal attention — every recommendation is grounded in data, and every decision is made to serve your long-term interests.</p>
+      <div class="about-stats">
+        <div>
+          <div class="stat-num">150+</div>
+          <div class="stat-label">Properties Transacted</div>
+        </div>
+        <div>
+          <div class="stat-num">98%</div>
+          <div class="stat-label">Client Satisfaction</div>
+        </div>
+        <div>
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="section-label">What I Offer</div>
+  <h2 class="section-title">Services Tailored to <span class="accent">You</span></h2>
+  <p class="section-intro">Whether you're purchasing your first home, upgrading, or building a property portfolio, I provide clear strategy at every step.</p>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">B</div>
+      <h3>Buying</h3>
+      <p>Personalised property search, negotiation, and due diligence for a confident purchase.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">S</div>
+      <h3>Selling</h3>
+      <p>Strategic pricing and premium marketing to achieve the best value for your property.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">I</div>
+      <h3>Investment</h3>
+      <p>Data-driven advice on portfolio growth, rental yield, and long-term capital appreciation.</p>
+    </div>
+  </div>
+</section>
+
+<section id="market-intel">
+  <div class="section-label">Market Intel</div>
+  <h2 class="section-title">Stay Ahead With <span class="accent">Real-Time Insight</span></h2>
+  <p class="section-intro">Explore indicative mortgage rates, run your own repayment estimates, and catch up on the latest movements in Singapore's property market.</p>
+
+  <div class="intel-tabs">
+    <a class="intel-tab active" data-tab="rates" href="#panel-rates">Interest Rates</a>
+    <a class="intel-tab" data-tab="calculator" href="#panel-calculator">Mortgage Calculator</a>
+    <a class="intel-tab" data-tab="updates" href="#panel-updates">Market Updates</a>
+    <a class="intel-tab" data-tab="live" href="#panel-live">Live Transactions</a>
+  </div>
+
+  <div class="intel-panel reveal" id="panel-rates">
+    <h3 class="intel-panel-title">Current <span class="accent">Interest Rates</span></h3>
+    <div class="rates-grid">
+      <div class="rate-card">
+        <div class="rate-type">SORA Floating</div>
+        <div class="rate-value">3.15%</div>
+        <div class="rate-note">1M SORA + spread, private property</div>
+      </div>
+      <div class="rate-card">
+        <div class="rate-type">2-Yr Fixed</div>
+        <div class="rate-value">3.35%</div>
+        <div class="rate-note">Bank fixed-rate package</div>
+      </div>
+      <div class="rate-card">
+        <div class="rate-type">HDB Loan</div>
+        <div class="rate-value">2.60%</div>
+        <div class="rate-note">CPF concessionary rate</div>
+      </div>
+      <div class="rate-card">
+        <div class="rate-type">Board Rate</div>
+        <div class="rate-value">4.00%</div>
+        <div class="rate-note">Bank internal board-pegged</div>
+      </div>
+    </div>
+    <p class="intel-disclaimer">Rates shown are indicative as of <span id="ratesDate"></span> and vary by bank, loan package and applicant profile. <a href="#contact">Contact me</a> for current, personalised offers.</p>
+  </div>
+
+  <div class="intel-panel reveal" id="panel-calculator">
+    <h3 class="intel-panel-title">Mortgage <span class="accent">Calculator</span></h3>
+    <div class="calculator-wrap">
+      <div class="calc-inputs">
+        <div class="calc-field">
+          <div class="calc-field-head">
+            <label for="calcPrice">Property Price</label>
+            <span class="calc-val" id="calcPriceVal">S$1,200,000</span>
+          </div>
+          <input type="range" id="calcPrice" min="200000" max="5000000" step="10000" value="1200000">
+        </div>
+        <div class="calc-field">
+          <div class="calc-field-head">
+            <label for="calcDown">Down Payment</label>
+            <span class="calc-val" id="calcDownVal">25%</span>
+          </div>
+          <input type="range" id="calcDown" min="5" max="75" step="1" value="25">
+        </div>
+        <div class="calc-field">
+          <div class="calc-field-head">
+            <label for="calcRate">Interest Rate</label>
+            <span class="calc-val" id="calcRateVal">3.50%</span>
+          </div>
+          <input type="range" id="calcRate" min="1" max="6" step="0.05" value="3.5">
+        </div>
+        <div class="calc-field">
+          <div class="calc-field-head">
+            <label for="calcTenure">Loan Tenure</label>
+            <span class="calc-val" id="calcTenureVal">25 yrs</span>
+          </div>
+          <input type="range" id="calcTenure" min="5" max="35" step="1" value="25">
+        </div>
+      </div>
+      <div class="calc-results">
+        <div class="result-item primary">
+          <div class="result-label">Monthly Instalment</div>
+          <div class="result-value" id="resMonthly">S$0</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Loan Amount</div>
+          <div class="result-value" id="resLoan">S$0</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Total Interest</div>
+          <div class="result-value" id="resInterest">S$0</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Total Repayment</div>
+          <div class="result-value" id="resTotal">S$0</div>
+        </div>
+      </div>
+    </div>
+    <p class="intel-disclaimer">This calculator provides an estimate only and excludes fees, stamp duties and TDSR/MSR limits. <a href="#contact">Speak with me</a> for a full affordability assessment.</p>
+  </div>
+
+  <div class="intel-panel reveal" id="panel-updates">
+    <h3 class="intel-panel-title">Latest <span class="accent">Market Updates</span></h3>
+    <div class="market-news-grid">
+      <div class="news-card reveal">
+        <div class="news-date">July 2026</div>
+        <h3>Private Home Prices Edge Up as New Launches Draw Strong Demand</h3>
+        <p>Recent quarter data shows continued resilience in the core central region, with buyers favouring well-located, smaller-format units.</p>
+      </div>
+      <div class="news-card reveal">
+        <div class="news-date">June 2026</div>
+        <h3>SORA Rates Stabilise, Offering Clarity for Refinancing</h3>
+        <p>With short-term rates holding steady, homeowners are revisiting fixed vs. floating packages ahead of their lock-in expiry.</p>
+      </div>
+      <div class="news-card reveal">
+        <div class="news-date">June 2026</div>
+        <h3>HDB Resale Volumes Rise in Mature Estates</h3>
+        <p>Demand remains firm for resale flats near MRT lines and established amenities, keeping million-dollar transactions in the headlines.</p>
+      </div>
+    </div>
+    <p class="intel-disclaimer">Summaries are for general awareness only — <a href="#contact">reach out</a> for a tailored read on how current trends affect your property plans.</p>
+  </div>
+
+  <div class="intel-panel reveal" id="panel-live">
+    <h3 class="intel-panel-title">Live <span class="accent">Transactions</span></h3>
+    <div class="txn-controls">
+      <input type="text" id="txnSearch" placeholder="Search by project name…" autocomplete="off">
+    </div>
+    <div class="txn-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Project</th>
+            <th>District</th>
+            <th>Price</th>
+            <th>Floor Area</th>
+            <th>PSF</th>
+            <th>Sale Date</th>
+          </tr>
+        </thead>
+        <tbody id="txnBody"></tbody>
+      </table>
+      <div class="txn-status" id="txnStatus">Loading latest transactions…</div>
+    </div>
+    <p class="txn-meta" id="txnMeta"></p>
+    <p class="intel-disclaimer">Transaction data is sourced from URA's REALIS Property Market Information API. <a href="#contact">Contact me</a> for a detailed read on any of these deals.</p>
+  </div>
+</section>
+
+<div class="testimonial" id="testimonial">
+  <blockquote class="reveal">
+    "Yuna made what felt like an overwhelming decision completely manageable. Her advice was honest, sharp, and always focused on what mattered most to us."
+    <cite>— A. Tan, Homeowner</cite>
+  </blockquote>
+</div>
+
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2 class="section-title">Let's Find Your <span class="accent">Next Move</span></h2>
+  <p class="section-intro">Reach out for a no-obligation consultation about your property goals.</p>
+
+  <div class="contact-wrap">
+    <form class="contact-form reveal" id="contactForm">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Tell me about your property goals..." required></textarea>
+      <button type="submit" class="cta-btn" style="align-self:center;">Send Message</button>
+      <div class="form-msg" id="formMsg"></div>
+    </form>
+
+    <div class="contact-info reveal">
+      <div class="contact-info-item">
+        <div class="label">Email</div>
+        <a class="value" href="mailto:yuna.sito@example.com">yuna.sito@example.com</a>
+      </div>
+      <div class="contact-info-item">
+        <div class="label">Phone</div>
+        <a class="value" href="tel:+6596942445">+65 9694 2445</a>
+      </div>
+      <div class="contact-info-item">
+        <div class="label">Location</div>
+        <div class="value">Singapore</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="logo">Yuna Sito</span>
+  <span>&copy; 2026 Yuna Sito Realty. All rights reserved.</span>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/6596942445" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-7.94 7.94c0 1.4.37 2.76 1.07 3.96L4 20l4.2-1.1a7.9 7.9 0 0 0 3.85 1h.01a7.94 7.94 0 0 0 7.94-7.93c0-2.12-.83-4.11-2.4-5.65zm-5.55 12.2h-.01a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.5.66.67-2.44-.16-.25a6.58 6.58 0 0 1-1.01-3.5 6.6 6.6 0 0 1 6.6-6.6 6.55 6.55 0 0 1 4.67 1.94 6.55 6.55 0 0 1 1.93 4.67 6.6 6.6 0 0 1-6.59 6.58zm3.6-4.93c-.2-.1-1.17-.58-1.35-.64-.18-.07-.32-.1-.45.1-.13.2-.5.64-.62.77-.11.13-.23.15-.43.05-.2-.1-.83-.3-1.58-.97a5.9 5.9 0 0 1-1.1-1.37c-.11-.2 0-.3.09-.4.1-.1.2-.23.3-.35.1-.11.13-.2.2-.33.06-.13.03-.25-.02-.35-.05-.1-.45-1.08-.62-1.48-.16-.39-.33-.34-.45-.34l-.38-.01c-.13 0-.35.05-.53.25s-.7.68-.7 1.65.72 1.92.82 2.05c.1.13 1.4 2.14 3.4 3 .48.2.85.33 1.14.42.48.15.92.13 1.26.08.39-.06 1.17-.48 1.34-.94.16-.46.16-.86.11-.94-.05-.08-.18-.13-.38-.23z"/>
+  </svg>
+</a>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+  navToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
+    navToggle.classList.toggle('active');
+  });
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navMenu.classList.remove('open'));
+  });
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Market Intel: sticky sub-nav offsets + scrollspy (section stays scrollable,
+  // clicking a header just jumps to that part of the page)
+  const intelTabs = document.querySelectorAll('.intel-tab');
+  const intelPanels = document.querySelectorAll('.intel-panel');
+
+  function setIntelOffsets() {
+    const headerH = header.offsetHeight;
+    document.documentElement.style.setProperty('--intel-tabs-top', headerH + 'px');
+  }
+  setIntelOffsets();
+  window.addEventListener('resize', setIntelOffsets);
+
+  intelTabs.forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = tab.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (!target) return;
+      const intelTabsEl = document.querySelector('.intel-tabs');
+      const offset = header.offsetHeight + (intelTabsEl ? intelTabsEl.offsetHeight : 0) + 24;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+
+  if (intelPanels.length) {
+    const spyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const key = entry.target.id.replace('panel-', '');
+          intelTabs.forEach(t => t.classList.toggle('active', t.dataset.tab === key));
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    intelPanels.forEach(p => spyObserver.observe(p));
+  }
+
+  // Rates "as of" date
+  const ratesDateEl = document.getElementById('ratesDate');
+  if (ratesDateEl) {
+    ratesDateEl.textContent = new Date().toLocaleDateString('en-SG', { month: 'long', year: 'numeric' });
+  }
+
+  // Mortgage calculator
+  const sgd = n => 'S$' + Math.round(n).toLocaleString('en-SG');
+  const priceInput = document.getElementById('calcPrice');
+  const downInput = document.getElementById('calcDown');
+  const rateInput = document.getElementById('calcRate');
+  const tenureInput = document.getElementById('calcTenure');
+
+  function calcMortgage() {
+    const price = Number(priceInput.value);
+    const downPct = Number(downInput.value);
+    const annualRate = Number(rateInput.value);
+    const years = Number(tenureInput.value);
+
+    document.getElementById('calcPriceVal').textContent = sgd(price);
+    document.getElementById('calcDownVal').textContent = downPct + '%';
+    document.getElementById('calcRateVal').textContent = annualRate.toFixed(2) + '%';
+    document.getElementById('calcTenureVal').textContent = years + ' yrs';
+
+    const loanAmount = price * (1 - downPct / 100);
+    const monthlyRate = annualRate / 100 / 12;
+    const numPayments = years * 12;
+
+    let monthly;
+    if (monthlyRate === 0) {
+      monthly = loanAmount / numPayments;
+    } else {
+      monthly = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, numPayments) /
+                (Math.pow(1 + monthlyRate, numPayments) - 1);
+    }
+    const totalRepayment = monthly * numPayments;
+    const totalInterest = totalRepayment - loanAmount;
+
+    document.getElementById('resLoan').textContent = sgd(loanAmount);
+    document.getElementById('resMonthly').textContent = sgd(monthly);
+    document.getElementById('resInterest').textContent = sgd(totalInterest);
+    document.getElementById('resTotal').textContent = sgd(totalRepayment);
+  }
+
+  [priceInput, downInput, rateInput, tenureInput].forEach(input => {
+    if (input) input.addEventListener('input', calcMortgage);
+  });
+  if (priceInput) calcMortgage();
+
+  // Live Transactions (fetched from the Netlify function proxying URA's API)
+  (function initLiveTransactions() {
+    const tbody = document.getElementById('txnBody');
+    if (!tbody) return;
+
+    const statusEl = document.getElementById('txnStatus');
+    const metaEl = document.getElementById('txnMeta');
+    const searchInput = document.getElementById('txnSearch');
+    const MAX_ROWS_SHOWN = 200;
+    let allRows = [];
+
+    const sgd = n => (isFinite(n) ? 'S$' + Math.round(n).toLocaleString('en-SG') : '—');
+
+    function formatContractDate(mmyy) {
+      if (!mmyy || mmyy.length !== 4) return '—';
+      const months = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const m = months[parseInt(mmyy.slice(0, 2), 10)] || mmyy.slice(0, 2);
+      return `${m} 20${mmyy.slice(2, 4)}`;
+    }
+
+    function showStatus(text) {
+      statusEl.textContent = text;
+      statusEl.style.display = 'block';
+      tbody.innerHTML = '';
+    }
+
+    function renderRows(rows, totalCount) {
+      if (!rows.length) {
+        showStatus('No matching transactions found.');
+        metaEl.textContent = '';
+        return;
+      }
+      statusEl.style.display = 'none';
+      const shown = rows.slice(0, MAX_ROWS_SHOWN);
+      tbody.innerHTML = shown.map(r => `
+        <tr>
+          <td>${r.project}</td>
+          <td>${r.district}</td>
+          <td>${sgd(r.price)}</td>
+          <td>${r.area ? r.area.toLocaleString('en-SG') + ' sqm' : '—'}</td>
+          <td>${r.psf ? sgd(r.psf) : '—'}</td>
+          <td>${formatContractDate(r.contractDate)}</td>
+        </tr>
+      `).join('');
+      metaEl.textContent = `Showing ${shown.length} of ${totalCount} transaction${totalCount === 1 ? '' : 's'}`;
+    }
+
+    async function loadTransactions() {
+      showStatus('Loading latest transactions…');
+      try {
+        const res = await fetch('/.netlify/functions/ura');
+        const payload = await res.json();
+        if (!res.ok) throw new Error(payload.error || `Request failed (${res.status})`);
+
+        const items = Array.isArray(payload) ? payload : (payload.Result || []);
+        items.forEach(item => {
+          const project = item.project || 'Unknown Project';
+          const txns = item.transaction || [];
+          txns.forEach(t => {
+            const area = Number(t.area);
+            const price = Number(t.price);
+            const psf = (isFinite(area) && area > 0 && isFinite(price)) ? price / (area * 10.7639) : null;
+            allRows.push({
+              project,
+              district: t.district || '—',
+              price: isFinite(price) ? price : null,
+              area: isFinite(area) ? area : null,
+              psf,
+              contractDate: t.contractDate || '',
+            });
+          });
+        });
+
+        // newest sale date first
+        allRows.sort((a, b) => {
+          const keyOf = d => (d && d.length === 4) ? d.slice(2, 4) + d.slice(0, 2) : '';
+          return keyOf(b.contractDate).localeCompare(keyOf(a.contractDate));
+        });
+
+        if (!allRows.length) {
+          showStatus('No transaction data available right now.');
+          return;
+        }
+
+        renderRows(allRows, allRows.length);
+      } catch (err) {
+        showStatus('Unable to load live transaction data right now. Please try again later.');
+        metaEl.textContent = '';
+        console.error('URA transactions error:', err);
+      }
+    }
+
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.trim().toLowerCase();
+      const filtered = q ? allRows.filter(r => r.project.toLowerCase().includes(q)) : allRows;
+      renderRows(filtered, filtered.length);
+    });
+
+    loadTransactions();
+  })();
+
+  // Contact form (front-end only demo)
+  const form = document.getElementById('contactForm');
+  const formMsg = document.getElementById('formMsg');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    formMsg.textContent = "Thank you — I'll be in touch within 24 hours.";
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
