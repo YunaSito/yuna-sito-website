@@ -207,7 +207,7 @@
     animation:fadeUp 0.8s ease forwards 0.4s;
   }
   .hero-tagline{
-    max-width:480px;
+    max-width:560px;
     margin-top:1.4rem;
     font-size:1.1rem;
     color:var(--text-muted);
@@ -223,16 +223,6 @@
     opacity:0;
     animation:fadeUp 0.8s ease forwards 0.7s;
   }
-  .hero-stats{
-    display:flex;
-    gap:2.6rem;
-    margin-top:3.2rem;
-    flex-wrap:wrap;
-    opacity:0;
-    animation:fadeUp 0.8s ease forwards 0.85s;
-  }
-  .hero-stats .stat-num{font-size:1.6rem; font-weight:700;}
-  .hero-stats .stat-label{font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem;}
 
   .hero-visual{
     position:relative;
@@ -249,29 +239,6 @@
     object-fit:cover;
     display:block;
   }
-  .hero-visual-badge{
-    position:absolute;
-    left:1.6rem;
-    bottom:1.6rem;
-    background:var(--white);
-    border-radius:var(--radius-sm);
-    padding:1rem 1.3rem;
-    box-shadow:var(--shadow-md);
-    display:flex;
-    align-items:center;
-    gap:0.8rem;
-  }
-  .hero-visual-badge .icon-wrap{
-    width:38px;height:38px;
-    border-radius:10px;
-    background:rgba(200,164,90,0.14);
-    display:flex; align-items:center; justify-content:center;
-    color:var(--gold-dark);
-  }
-  .hero-visual-badge .icon-wrap svg{width:20px; height:20px;}
-  .hero-visual-badge .badge-title{font-size:0.85rem; font-weight:700;}
-  .hero-visual-badge .badge-sub{font-size:0.75rem; color:var(--text-muted);}
-
   @keyframes fadeUp{
     from{opacity:0; transform:translateY(20px);}
     to{opacity:1; transform:translateY(0);}
@@ -915,7 +882,7 @@
   /* RESPONSIVE */
   @media (max-width:860px){
     .hero{grid-template-columns:1fr; text-align:center; padding-top:5.5rem;}
-    .hero-actions, .hero-stats{justify-content:center;}
+    .hero-actions{justify-content:center;}
     .hero-tagline{margin-left:auto; margin-right:auto;}
     .hero-visual{order:-1; max-width:340px; margin:0 auto;}
     .about-wrap{grid-template-columns:1fr;}
@@ -1025,35 +992,14 @@
     <div class="hero-eyebrow">Singapore Real Estate</div>
     <h1>Yuna <span class="accent">Sito</span></h1>
     <div class="hero-title">Real Estate Agent</div>
-    <p class="hero-tagline">Making Property Decisions Simple &amp; Strategic</p>
+    <p class="hero-tagline">Whether you're selling your home, searching for your next property, upgrading, investing, or renting, I'm here to make your property journey simple, strategic, and stress-free with honest advice and dedicated support from start to finish.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn btn-primary">Book a Consultation →</a>
       <a href="#market-intel" class="btn btn-secondary">Explore Market Intel</a>
     </div>
-    <div class="hero-stats">
-      <div>
-        <div class="stat-num">150+</div>
-        <div class="stat-label">Properties Transacted</div>
-      </div>
-      <div>
-        <div class="stat-num">98%</div>
-        <div class="stat-label">Client Satisfaction</div>
-      </div>
-      <div>
-        <div class="stat-num">10+</div>
-        <div class="stat-label">Years Experience</div>
-      </div>
-    </div>
   </div>
   <div class="hero-visual">
     <img src="images/yuna-photo.jpg" alt="Yuna Sito, real estate agent in Singapore">
-    <div class="hero-visual-badge">
-      <span class="icon-wrap"><svg><use href="#icon-trending"/></svg></span>
-      <div>
-        <div class="badge-title">Core Central Region</div>
-        <div class="badge-sub">Prices trending steady</div>
-      </div>
-    </div>
   </div>
 </section>
 
