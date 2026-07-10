@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yuna Sito | Real Estate Agent, Singapore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F2747;
+    --navy-soft:rgba(15,39,71,0.06);
+    --navy-soft-2:rgba(15,39,71,0.1);
+    --gold:#C8A45A;
+    --gold-dark:#AD8845;
+    --white:#FFFFFF;
+    --bg:#F7F8FA;
+    --text:#0F2747;
+    --text-muted:#5C6675;
+    --border:#E7E9EE;
+    --radius-sm:12px;
+    --radius-lg:16px;
+    --shadow-sm:0 2px 10px rgba(15,39,71,0.06);
+    --shadow-md:0 10px 30px rgba(15,39,71,0.08);
+    --shadow-lg:0 24px 60px rgba(15,39,71,0.14);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height:1.65;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-weight:700;
+    letter-spacing:-0.02em;
+    color:var(--navy);
+  }
+
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;}
+
+  ::selection{background:var(--gold);color:var(--white);}
+
+  .accent{color:var(--gold);}
+
+  /* container */
+  .container{
+    max-width:1160px;
+    margin:0 auto;
+    padding:0 6%;
+  }
+
+  /* NAV */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 6%;
+    background:rgba(247,248,250,0.78);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;
+    transition:border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+  }
+  header.scrolled{
+    border-bottom:1px solid var(--border);
+    background:rgba(255,255,255,0.9);
+    box-shadow:var(--shadow-sm);
+  }
+  .logo{
+    font-size:1.15rem;
+    font-weight:700;
+    letter-spacing:-0.01em;
+    color:var(--navy);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .logo .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); display:inline-block;}
+
+  nav ul{
+    list-style:none;
+    display:flex;
+    align-items:center;
+    gap:2.4rem;
+  }
+  nav a{
+    font-size:0.92rem;
+    font-weight:500;
+    color:var(--text-muted);
+    position:relative;
+    padding-bottom:4px;
+    transition:color 0.25s ease;
+  }
+  nav a::after{
+    content:'';
+    position:absolute;
+    left:0;bottom:0;
+    width:0;height:2px;
+    border-radius:2px;
+    background:var(--gold);
+    transition:width 0.25s ease;
+  }
+  nav a:hover{color:var(--navy);}
+  nav a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--navy);
+    color:var(--white) !important;
+    padding:0.65rem 1.4rem;
+    border-radius:var(--radius-sm);
+    font-weight:600;
+    transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  }
+  .nav-cta::after{display:none;}
+  .nav-cta:hover{background:#16335c; transform:translateY(-2px); box-shadow:var(--shadow-md);}
+
+  .nav-toggle{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+    z-index:110;
+  }
+  .nav-toggle span{
+    width:24px;height:2px;
+    border-radius:2px;
+    background:var(--navy);
+    transition:all 0.3s ease;
+  }
+
+  /* BUTTONS */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:0.5rem;
+    padding:1rem 2.1rem;
+    border-radius:var(--radius-sm);
+    font-size:0.95rem;
+    font-weight:600;
+    cursor:pointer;
+    border:none;
+    transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+  }
+  .btn-primary{
+    background:var(--navy);
+    color:var(--white);
+    box-shadow:var(--shadow-md);
+  }
+  .btn-primary:hover{background:#16335c; transform:translateY(-3px); box-shadow:var(--shadow-lg);}
+  .btn-secondary{
+    background:var(--white);
+    color:var(--navy);
+    border:1px solid var(--border);
+  }
+  .btn-secondary:hover{border-color:var(--navy); transform:translateY(-3px); box-shadow:var(--shadow-sm);}
+
+  /* HERO */
+  .hero{
+    padding:7rem 6% 6rem;
+    max-width:1160px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:4rem;
+    align-items:center;
+  }
+  .hero-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.8rem;
+    font-weight:600;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--gold-dark);
+    background:rgba(200,164,90,0.12);
+    padding:0.5rem 1rem;
+    border-radius:999px;
+    margin-bottom:1.6rem;
+    opacity:0;
+    animation:fadeUp 0.8s ease forwards 0.1s;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 4.6vw, 3.9rem);
+    line-height:1.08;
+    opacity:0;
+    animation:fadeUp 0.8s ease forwards 0.25s;
+  }
+  .hero-title{
+    margin-top:0.9rem;
+    font-size:1.05rem;
+    font-weight:600;
+    color:var(--text-muted);
+    opacity:0;
+    animation:fadeUp 0.8s ease forwards 0.4s;
+  }
+  .hero-tagline{
+    max-width:480px;
+    margin-top:1.4rem;
+    font-size:1.1rem;
+    color:var(--text-muted);
+    opacity:0;
+    animation:fadeUp 0.8s ease forwards 0.55s;
+  }
+  .hero-actions{
+    display:flex;
+    align-items:center;
+    gap:1.2rem;
+    margin-top:2.4rem;
+    flex-wrap:wrap;
+    opacity:0;
+    animation:fadeUp 0.8s ease forwards 0.7s;
+  }
+  .hero-stats{
+    display:flex;
+    gap:2.6rem;
+    margin-top:3.2rem;
+    flex-wrap:wrap;
+    opacity:0;
+    animation:fadeUp 0.8s ease forwards 0.85s;
+  }
+  .hero-stats .stat-num{font-size:1.6rem; font-weight:700;}
+  .hero-stats .stat-label{font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem;}
+
+  .hero-visual{
+    position:relative;
+    aspect-ratio:4/5;
+    border-radius:var(--radius-lg);
+    background:linear-gradient(150deg, #EEF1F6 0%, #FFFFFF 55%, #F3EEE3 100%);
+    box-shadow:var(--shadow-lg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    opacity:0;
+    animation:fadeUp 0.9s ease forwards 0.4s;
+  }
+  .hero-visual .skyline-icon{width:62%; height:62%; color:var(--navy); opacity:0.16;}
+  .hero-visual-badge{
+    position:absolute;
+    left:1.6rem;
+    bottom:1.6rem;
+    background:var(--white);
+    border-radius:var(--radius-sm);
+    padding:1rem 1.3rem;
+    box-shadow:var(--shadow-md);
+    display:flex;
+    align-items:center;
+    gap:0.8rem;
+  }
+  .hero-visual-badge .icon-wrap{
+    width:38px;height:38px;
+    border-radius:10px;
+    background:rgba(200,164,90,0.14);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--gold-dark);
+  }
+  .hero-visual-badge .icon-wrap svg{width:20px; height:20px;}
+  .hero-visual-badge .badge-title{font-size:0.85rem; font-weight:700;}
+  .hero-visual-badge .badge-sub{font-size:0.75rem; color:var(--text-muted);}
+
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  /* SECTION SHARED */
+  section{
+    padding:6.5rem 6%;
+    max-width:1160px;
+    margin:0 auto;
+  }
+  .section-label{
+    font-size:0.8rem;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--gold-dark);
+    text-align:center;
+    margin-bottom:0.9rem;
+  }
+  .section-title{
+    text-align:center;
+    font-size:clamp(1.9rem, 3.2vw, 2.6rem);
+    margin-bottom:1rem;
+  }
+  .section-intro{
+    text-align:center;
+    max-width:580px;
+    margin:0 auto 4rem;
+    color:var(--text-muted);
+    font-size:1.05rem;
+  }
+
+  .card{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-sm);
+    transition:transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .card:hover{transform:translateY(-4px); box-shadow:var(--shadow-md); border-color:transparent;}
+
+  /* ABOUT */
+  .about-wrap{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:4rem;
+    align-items:center;
+  }
+  .about-portrait{
+    aspect-ratio:4/5;
+    border-radius:var(--radius-lg);
+    background:linear-gradient(160deg, #FFFFFF 0%, #F1F3F7 100%);
+    box-shadow:var(--shadow-md);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .about-portrait img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .about-text p{
+    color:var(--text-muted);
+    margin-bottom:1.2rem;
+    font-size:1.02rem;
+  }
+  .about-stats{
+    display:flex;
+    gap:2.2rem;
+    margin-top:2.2rem;
+    flex-wrap:wrap;
+  }
+  .stat-block{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius-sm);
+    padding:1.2rem 1.5rem;
+    flex:1;
+    min-width:130px;
+  }
+  .stat-num{
+    font-size:1.7rem;
+    font-weight:700;
+    color:var(--navy);
+  }
+  .stat-label{
+    font-size:0.78rem;
+    color:var(--text-muted);
+    margin-top:0.3rem;
+  }
+
+  /* SERVICES */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1.6rem;
+  }
+  .service-card{
+    padding:2.4rem 2rem;
+    text-align:left;
+  }
+  .service-icon{
+    width:52px;height:52px;
+    border-radius:14px;
+    background:rgba(200,164,90,0.12);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--gold-dark);
+    margin-bottom:1.6rem;
+  }
+  .service-icon svg{width:24px; height:24px;}
+  .service-card h3{
+    font-size:1.15rem;
+    margin-bottom:0.7rem;
+  }
+  .service-card p{
+    font-size:0.95rem;
+    color:var(--text-muted);
+  }
+
+  /* VIDEOS */
+  .videos-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));
+    gap:1.4rem;
+  }
+  .video-card{
+    position:relative;
+    display:block;
+    aspect-ratio:9/16;
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    box-shadow:var(--shadow-sm);
+    background:#000;
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .video-card:hover{transform:translateY(-6px); box-shadow:var(--shadow-lg);}
+  .video-card .video-el{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    background:#000;
+  }
+  .video-card .video-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(15,39,71,0.05) 0%, rgba(15,39,71,0.6) 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    border:none;
+    padding:0;
+    transition:opacity 0.3s ease;
+  }
+  .video-card.playing .video-overlay{opacity:0; pointer-events:none;}
+  .video-card .play-btn{
+    width:50px;height:50px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.94);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--navy);
+    box-shadow:var(--shadow-md);
+    border:none;
+    cursor:pointer;
+    transition:transform 0.3s ease;
+  }
+  .video-card:hover .play-btn{transform:scale(1.12);}
+  .video-card .play-btn svg{width:18px; height:18px; margin-left:2px;}
+  .video-card .tiktok-badge{
+    position:absolute;
+    top:0.8rem; right:0.8rem;
+    width:28px;height:28px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.94);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--navy);
+    pointer-events:none;
+  }
+  .video-card.playing .tiktok-badge{display:none;}
+  .video-card .tiktok-badge svg{width:13px; height:13px;}
+
+  /* TESTIMONIAL */
+  .testimonial{
+    padding:6.5rem 6%;
+  }
+  .testimonial-card{
+    max-width:760px;
+    margin:0 auto;
+    padding:3.5rem 3rem;
+    text-align:center;
+  }
+  .quote-mark{
+    font-size:3.5rem;
+    font-weight:800;
+    color:var(--gold);
+    line-height:1;
+    margin-bottom:0.5rem;
+    font-family:Georgia, serif;
+  }
+  .testimonial blockquote{
+    font-size:clamp(1.15rem, 2vw, 1.4rem);
+    color:var(--navy);
+    line-height:1.6;
+    font-weight:500;
+  }
+  .testimonial cite{
+    display:block;
+    margin-top:1.8rem;
+    font-style:normal;
+    font-size:0.85rem;
+    font-weight:600;
+    color:var(--text-muted);
+  }
+
+  /* MARKET INTEL */
+  .intel-tabs{
+    display:flex;
+    justify-content:center;
+    gap:0.4rem;
+    flex-wrap:wrap;
+    margin-bottom:4rem;
+    position:sticky;
+    top:var(--intel-tabs-top, 76px);
+    z-index:20;
+    padding:0.9rem;
+    background:rgba(247,248,250,0.9);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-radius:var(--radius-lg);
+    border:1px solid var(--border);
+    max-width:fit-content;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .intel-tab{
+    background:transparent;
+    border:none;
+    color:var(--text-muted);
+    padding:0.75rem 1.5rem;
+    border-radius:var(--radius-sm);
+    font-size:0.85rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:all 0.25s ease;
+    font-family:inherit;
+    display:inline-block;
+  }
+  .intel-tab:hover{color:var(--navy);}
+  .intel-tab.active{
+    background:var(--navy);
+    color:var(--white);
+    box-shadow:var(--shadow-sm);
+  }
+
+  .intel-panel{
+    scroll-margin-top:calc(var(--intel-tabs-top, 76px) + 100px);
+    padding-top:1rem;
+  }
+  .intel-panel + .intel-panel{
+    margin-top:5rem;
+    padding-top:3rem;
+    border-top:1px solid var(--border);
+  }
+  .intel-panel-title{
+    text-align:center;
+    font-size:1.5rem;
+    margin-bottom:2.4rem;
+  }
+
+  /* rates */
+  .rates-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1.2rem;
+  }
+  .rate-card{
+    padding:2.1rem 1.5rem;
+    text-align:center;
+  }
+  .rate-card .rate-type{
+    font-size:0.75rem;
+    font-weight:600;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--gold-dark);
+    margin-bottom:0.8rem;
+  }
+  .rate-card .rate-value{
+    font-size:2rem;
+    font-weight:700;
+    color:var(--navy);
+  }
+  .rate-card .rate-note{
+    font-size:0.8rem;
+    color:var(--text-muted);
+    margin-top:0.6rem;
+  }
+  .intel-disclaimer{
+    text-align:center;
+    font-size:0.85rem;
+    color:var(--text-muted);
+    margin-top:2rem;
+  }
+  .intel-disclaimer a{color:var(--navy); font-weight:600; border-bottom:1px solid var(--gold);}
+
+  /* calculator */
+  .calculator-wrap{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:0;
+    padding:0;
+    overflow:hidden;
+  }
+  .calc-inputs{padding:2.8rem;}
+  .calc-field{margin-bottom:1.8rem;}
+  .calc-field:last-child{margin-bottom:0;}
+  .calc-field-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:0.8rem;
+  }
+  .calc-field-head label{
+    font-size:0.85rem;
+    font-weight:600;
+    color:var(--text-muted);
+  }
+  .calc-field-head .calc-val{
+    color:var(--navy);
+    font-weight:700;
+    font-size:1rem;
+  }
+  .calc-field input[type="range"]{
+    width:100%;
+    -webkit-appearance:none;
+    appearance:none;
+    height:4px;
+    border-radius:4px;
+    background:var(--border);
+    outline:none;
+  }
+  .calc-field input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    appearance:none;
+    width:18px;height:18px;
+    border-radius:50%;
+    background:var(--gold);
+    cursor:pointer;
+    box-shadow:0 2px 8px rgba(200,164,90,0.5);
+    border:3px solid var(--white);
+  }
+  .calc-field input[type="range"]::-moz-range-thumb{
+    width:18px;height:18px;
+    border:3px solid var(--white);
+    border-radius:50%;
+    background:var(--gold);
+    cursor:pointer;
+    box-shadow:0 2px 8px rgba(200,164,90,0.5);
+  }
+
+  .calc-results{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:1.6rem;
+    padding:2.8rem;
+    background:var(--navy-soft);
+  }
+  .result-item .result-label{
+    font-size:0.75rem;
+    font-weight:600;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    color:var(--text-muted);
+    margin-bottom:0.4rem;
+  }
+  .result-item .result-value{
+    font-size:1.7rem;
+    font-weight:700;
+    color:var(--navy);
+  }
+  .result-item.primary .result-value{font-size:2.3rem; color:var(--gold-dark);}
+
+  /* market updates */
+  .market-news-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1.6rem;
+  }
+  .news-card{
+    padding:2.1rem;
+  }
+  .news-card .news-date{
+    display:inline-block;
+    font-size:0.72rem;
+    font-weight:600;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    color:var(--gold-dark);
+    background:rgba(200,164,90,0.12);
+    padding:0.35rem 0.8rem;
+    border-radius:999px;
+    margin-bottom:1.1rem;
+  }
+  .news-card h3{
+    font-size:1.05rem;
+    margin-bottom:0.8rem;
+    line-height:1.4;
+  }
+  .news-card p{
+    font-size:0.9rem;
+    color:var(--text-muted);
+  }
+
+  /* live transactions */
+  .txn-controls{
+    display:flex;
+    justify-content:center;
+    margin-bottom:2rem;
+  }
+  .txn-search-wrap{
+    position:relative;
+    width:100%;
+    max-width:420px;
+  }
+  .txn-search-wrap svg{
+    position:absolute;
+    left:1.1rem; top:50%;
+    transform:translateY(-50%);
+    width:17px; height:17px;
+    color:var(--text-muted);
+  }
+  .txn-controls input{
+    width:100%;
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:var(--radius-sm);
+    color:var(--text);
+    padding:0.85rem 1.2rem 0.85rem 2.6rem;
+    font-family:inherit;
+    font-size:0.92rem;
+    outline:none;
+    transition:border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .txn-controls input::placeholder{color:var(--text-muted);}
+  .txn-controls input:focus{border-color:var(--gold); box-shadow:0 0 0 4px rgba(200,164,90,0.15);}
+
+  .txn-table-wrap{
+    overflow-x:auto;
+    padding:0;
+  }
+  .txn-table-wrap table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:0.88rem;
+  }
+  .txn-table-wrap th{
+    background:var(--navy-soft);
+    color:var(--navy);
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    font-size:0.7rem;
+    font-weight:700;
+    text-align:left;
+    padding:1rem 1.3rem;
+    white-space:nowrap;
+  }
+  .txn-table-wrap td{
+    padding:0.9rem 1.3rem;
+    border-top:1px solid var(--border);
+    color:var(--text-muted);
+    white-space:nowrap;
+  }
+  .txn-table-wrap tbody tr:hover td{background:rgba(200,164,90,0.06); color:var(--navy);}
+  .txn-status{
+    display:none;
+    text-align:center;
+    padding:3rem;
+    color:var(--text-muted);
+    font-size:0.9rem;
+  }
+  .txn-meta{
+    text-align:center;
+    font-size:0.82rem;
+    color:var(--text-muted);
+    margin-top:1.2rem;
+  }
+
+  @media (max-width:860px){
+    .rates-grid{grid-template-columns:repeat(2, 1fr);}
+    .calculator-wrap{grid-template-columns:1fr;}
+    .market-news-grid{grid-template-columns:1fr;}
+  }
+
+  /* CONTACT */
+  .contact-wrap{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:2rem;
+    align-items:start;
+  }
+  .contact-form-card{padding:2.8rem;}
+  .contact-form{
+    display:flex;
+    flex-direction:column;
+    gap:1.2rem;
+  }
+  .contact-form input,
+  .contact-form textarea{
+    width:100%;
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:var(--radius-sm);
+    color:var(--text);
+    padding:0.9rem 1.1rem;
+    font-family:inherit;
+    font-size:0.95rem;
+    outline:none;
+    transition:border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder{
+    color:var(--text-muted);
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus{
+    border-color:var(--gold);
+    box-shadow:0 0 0 4px rgba(200,164,90,0.15);
+    background:var(--white);
+  }
+  .contact-form textarea{resize:none; min-height:110px;}
+  .contact-form .btn-primary{align-self:flex-start;}
+
+  .contact-info{
+    display:flex;
+    flex-direction:column;
+    gap:1.6rem;
+    padding:2.8rem;
+  }
+  .contact-info-item{
+    display:flex;
+    align-items:flex-start;
+    gap:1rem;
+    text-align:left;
+  }
+  .contact-info-item .icon-wrap{
+    width:42px;height:42px;
+    border-radius:12px;
+    background:rgba(200,164,90,0.12);
+    color:var(--gold-dark);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .contact-info-item .icon-wrap svg{width:19px; height:19px;}
+  .contact-info .label{
+    font-size:0.72rem;
+    font-weight:600;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--text-muted);
+    margin-bottom:0.3rem;
+  }
+  .contact-info .value{
+    color:var(--navy);
+    font-size:0.98rem;
+    font-weight:600;
+  }
+  a.value{
+    display:inline-block;
+    transition:color 0.25s ease;
+  }
+  a.value:hover{color:var(--gold-dark);}
+
+  /* WHATSAPP FLOAT */
+  .whatsapp-float{
+    position:fixed;
+    right:2rem;
+    bottom:2rem;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#25D366;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:300;
+    box-shadow:var(--shadow-lg);
+    transition:transform 0.3s ease;
+  }
+  .whatsapp-float:hover{transform:scale(1.08);}
+  .whatsapp-float svg{width:28px; height:28px; fill:#fff;}
+
+  .form-msg{
+    margin-top:0.4rem;
+    font-size:0.88rem;
+    font-weight:600;
+    color:var(--gold-dark);
+    min-height:1.2em;
+  }
+
+  /* FOOTER */
+  footer{
+    padding:3rem 6%;
+    text-align:center;
+    border-top:1px solid var(--border);
+    color:var(--text-muted);
+    font-size:0.85rem;
+  }
+  footer .logo{
+    display:flex;
+    justify-content:center;
+    margin-bottom:0.8rem;
+    font-size:1.05rem;
+  }
+
+  /* reveal on scroll */
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr; text-align:center; padding-top:5.5rem;}
+    .hero-actions, .hero-stats{justify-content:center;}
+    .hero-tagline{margin-left:auto; margin-right:auto;}
+    .hero-visual{order:-1; max-width:340px; margin:0 auto;}
+    .about-wrap{grid-template-columns:1fr;}
+    .services-grid{grid-template-columns:1fr;}
+    .contact-wrap{grid-template-columns:1fr;}
+  }
+  @media (max-width:720px){
+    nav ul{
+      position:fixed;
+      top:0;right:0;
+      height:100vh;
+      width:75%;
+      max-width:300px;
+      background:var(--white);
+      flex-direction:column;
+      justify-content:center;
+      align-items:flex-start;
+      padding:0 3rem;
+      gap:2rem;
+      transform:translateX(100%);
+      transition:transform 0.4s ease;
+      box-shadow:var(--shadow-lg);
+    }
+    nav ul.open{transform:translateX(0);}
+    .nav-toggle{display:flex;}
+    .nav-cta{display:none;}
+    .whatsapp-float{width:52px; height:52px; right:1.2rem; bottom:1.2rem;}
+    .whatsapp-float svg{width:25px; height:25px;}
+  }
+</style>
+</head>
+<body>
+
+<svg style="display:none" aria-hidden="true">
+  <symbol id="icon-skyline" viewBox="0 0 200 140" fill="none" stroke="currentColor" stroke-width="2">
+    <rect x="18" y="60" width="28" height="70"/>
+    <rect x="54" y="34" width="32" height="96"/>
+    <rect x="94" y="50" width="26" height="80"/>
+    <rect x="128" y="20" width="34" height="110"/>
+    <rect x="170" y="70" width="18" height="60"/>
+    <line x1="62" y1="48" x2="78" y2="48"/>
+    <line x1="62" y1="62" x2="78" y2="62"/>
+    <line x1="62" y1="76" x2="78" y2="76"/>
+    <line x1="134" y1="36" x2="156" y2="36"/>
+    <line x1="134" y1="50" x2="156" y2="50"/>
+    <line x1="134" y1="64" x2="156" y2="64"/>
+  </symbol>
+  <symbol id="icon-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 11l9-8 9 8"/>
+    <path d="M5 10v10h14V10"/>
+    <path d="M9 20v-6h6v6"/>
+  </symbol>
+  <symbol id="icon-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.59 13.41L11 3.83A2 2 0 0 0 9.59 3H4a1 1 0 0 0-1 1v5.59a2 2 0 0 0 .59 1.41l9.59 9.59a2 2 0 0 0 2.82 0l4.59-4.59a2 2 0 0 0 0-2.82z"/>
+    <circle cx="7.5" cy="7.5" r="1.5"/>
+  </symbol>
+  <symbol id="icon-trending" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="3 17 9 11 13 15 21 7"/>
+    <polyline points="14 7 21 7 21 14"/>
+  </symbol>
+  <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="5" width="18" height="14" rx="2"/>
+    <path d="M3 7l9 6 9-6"/>
+  </symbol>
+  <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/>
+  </symbol>
+  <symbol id="icon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+    <circle cx="12" cy="10" r="3"/>
+  </symbol>
+  <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="11" cy="11" r="8"/>
+    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+  </symbol>
+  <symbol id="icon-play" viewBox="0 0 24 24" fill="currentColor">
+    <polygon points="6 4 20 12 6 20 6 4"/>
+  </symbol>
+  <symbol id="icon-tiktok" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M16.5 3h-3v11.6a2.9 2.9 0 1 1-2.4-2.86V8.6a6 6 0 1 0 5.4 5.97V9.8a7.7 7.7 0 0 0 4 1.12V7.9a4.7 4.7 0 0 1-4-2.7z"/>
+  </symbol>
+</svg>
+
+<header id="siteHeader">
+  <div class="logo"><span class="dot"></span>Yuna Sito</div>
+  <nav>
+    <ul id="navMenu">
+      <li><a href="#about">About</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#market-intel">Market Intel</a></li>
+      <li><a href="#testimonial">Reviews</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">Singapore Real Estate</div>
+    <h1>Yuna <span class="accent">Sito</span></h1>
+    <div class="hero-title">Real Estate Agent</div>
+    <p class="hero-tagline">Making Property Decisions Simple &amp; Strategic</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Book a Consultation →</a>
+      <a href="#market-intel" class="btn btn-secondary">Explore Market Intel</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">150+</div>
+        <div class="stat-label">Properties Transacted</div>
+      </div>
+      <div>
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+      <div>
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <svg class="skyline-icon"><use href="#icon-skyline"/></svg>
+    <div class="hero-visual-badge">
+      <span class="icon-wrap"><svg><use href="#icon-trending"/></svg></span>
+      <div>
+        <div class="badge-title">Core Central Region</div>
+        <div class="badge-sub">Prices trending steady</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-label">About</div>
+  <h2 class="section-title">A Considered Approach to <span class="accent">Property</span></h2>
+  <div class="about-wrap">
+    <div class="about-portrait reveal">
+      <img src="images/yuna-photo.jpg" alt="Yuna Sito, real estate agent in Singapore">
+    </div>
+    <div class="about-text reveal">
+      <p>With years of dedicated experience in Singapore's residential and luxury property market, I help clients navigate every stage of buying, selling, and investing with clarity and confidence.</p>
+      <p>My approach blends sharp market insight with genuine, personal attention — every recommendation is grounded in data, and every decision is made to serve your long-term interests.</p>
+      <div class="about-stats">
+        <div class="stat-block">
+          <div class="stat-num">150+</div>
+          <div class="stat-label">Properties Transacted</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">98%</div>
+          <div class="stat-label">Client Satisfaction</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="videos">
+  <div class="section-label">On TikTok</div>
+  <h2 class="section-title">Straight-Talking <span class="accent">Property Advice</span></h2>
+  <p class="section-intro">Quick, practical videos on buying, selling, and reading the Singapore market — tap any clip to watch on TikTok.</p>
+  <div class="videos-grid">
+    <div class="video-card reveal">
+      <video class="video-el" poster="images/yuna-photo.jpg" preload="none" playsinline>
+        <source src="images/video-1.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay">
+        <button class="play-btn" type="button" aria-label="Play video"><svg><use href="#icon-play"/></svg></button>
+      </div>
+      <span class="tiktok-badge"><svg><use href="#icon-tiktok"/></svg></span>
+    </div>
+    <div class="video-card reveal">
+      <video class="video-el" poster="images/yuna-photo.jpg" preload="none" playsinline>
+        <source src="images/video-2.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay">
+        <button class="play-btn" type="button" aria-label="Play video"><svg><use href="#icon-play"/></svg></button>
+      </div>
+      <span class="tiktok-badge"><svg><use href="#icon-tiktok"/></svg></span>
+    </div>
+    <div class="video-card reveal">
+      <video class="video-el" poster="images/yuna-photo.jpg" preload="none" playsinline>
+        <source src="images/video-3.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay">
+        <button class="play-btn" type="button" aria-label="Play video"><svg><use href="#icon-play"/></svg></button>
+      </div>
+      <span class="tiktok-badge"><svg><use href="#icon-tiktok"/></svg></span>
+    </div>
+    <div class="video-card reveal">
+      <video class="video-el" poster="images/yuna-photo.jpg" preload="none" playsinline>
+        <source src="images/video-4.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay">
+        <button class="play-btn" type="button" aria-label="Play video"><svg><use href="#icon-play"/></svg></button>
+      </div>
+      <span class="tiktok-badge"><svg><use href="#icon-tiktok"/></svg></span>
+    </div>
+    <div class="video-card reveal">
+      <video class="video-el" poster="images/yuna-photo.jpg" preload="none" playsinline>
+        <source src="images/video-5.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay">
+        <button class="play-btn" type="button" aria-label="Play video"><svg><use href="#icon-play"/></svg></button>
+      </div>
+      <span class="tiktok-badge"><svg><use href="#icon-tiktok"/></svg></span>
+    </div>
+    <div class="video-card reveal">
+      <video class="video-el" poster="images/yuna-photo.jpg" preload="none" playsinline>
+        <source src="images/video-6.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay">
+        <button class="play-btn" type="button" aria-label="Play video"><svg><use href="#icon-play"/></svg></button>
+      </div>
+      <span class="tiktok-badge"><svg><use href="#icon-tiktok"/></svg></span>
+    </div>
+  </div>
+  <p class="intel-disclaimer">Follow <a href="https://www.tiktok.com/@javiersandyuna" target="_blank" rel="noopener">@javiersandyuna</a> on TikTok for more.</p>
+</section>
+
+<section id="services">
+  <div class="section-label">What I Offer</div>
+  <h2 class="section-title">Services Tailored to <span class="accent">You</span></h2>
+  <p class="section-intro">Whether you're purchasing your first home, upgrading, or building a property portfolio, I provide clear strategy at every step.</p>
+  <div class="services-grid">
+    <div class="service-card card reveal">
+      <div class="service-icon"><svg><use href="#icon-home"/></svg></div>
+      <h3>Buying</h3>
+      <p>Personalised property search, negotiation, and due diligence for a confident purchase.</p>
+    </div>
+    <div class="service-card card reveal">
+      <div class="service-icon"><svg><use href="#icon-tag"/></svg></div>
+      <h3>Selling</h3>
+      <p>Strategic pricing and premium marketing to achieve the best value for your property.</p>
+    </div>
+    <div class="service-card card reveal">
+      <div class="service-icon"><svg><use href="#icon-trending"/></svg></div>
+      <h3>Investment</h3>
+      <p>Data-driven advice on portfolio growth, rental yield, and long-term capital appreciation.</p>
+    </div>
+  </div>
+</section>
+
+<section id="market-intel">
+  <div class="section-label">Market Intel</div>
+  <h2 class="section-title">Stay Ahead With <span class="accent">Real-Time Insight</span></h2>
+  <p class="section-intro">Explore indicative mortgage rates, run your own repayment estimates, and catch up on the latest movements in Singapore's property market.</p>
+
+  <div class="intel-tabs">
+    <a class="intel-tab active" data-tab="rates" href="#panel-rates">Interest Rates</a>
+    <a class="intel-tab" data-tab="calculator" href="#panel-calculator">Mortgage Calculator</a>
+    <a class="intel-tab" data-tab="updates" href="#panel-updates">Market Updates</a>
+    <a class="intel-tab" data-tab="live" href="#panel-live">Live Transactions</a>
+  </div>
+
+  <div class="intel-panel reveal" id="panel-rates">
+    <h3 class="intel-panel-title">Current <span class="accent">Interest Rates</span></h3>
+    <div class="rates-grid">
+      <div class="rate-card card">
+        <div class="rate-type">SORA Floating</div>
+        <div class="rate-value">3.15%</div>
+        <div class="rate-note">1M SORA + spread, private property</div>
+      </div>
+      <div class="rate-card card">
+        <div class="rate-type">2-Yr Fixed</div>
+        <div class="rate-value">3.35%</div>
+        <div class="rate-note">Bank fixed-rate package</div>
+      </div>
+      <div class="rate-card card">
+        <div class="rate-type">HDB Loan</div>
+        <div class="rate-value">2.60%</div>
+        <div class="rate-note">CPF concessionary rate</div>
+      </div>
+      <div class="rate-card card">
+        <div class="rate-type">Board Rate</div>
+        <div class="rate-value">4.00%</div>
+        <div class="rate-note">Bank internal board-pegged</div>
+      </div>
+    </div>
+    <p class="intel-disclaimer">Rates shown are indicative as of <span id="ratesDate"></span> and vary by bank, loan package and applicant profile. <a href="#contact">Contact me</a> for current, personalised offers.</p>
+  </div>
+
+  <div class="intel-panel reveal" id="panel-calculator">
+    <h3 class="intel-panel-title">Mortgage <span class="accent">Calculator</span></h3>
+    <div class="calculator-wrap card">
+      <div class="calc-inputs">
+        <div class="calc-field">
+          <div class="calc-field-head">
+            <label for="calcPrice">Property Price</label>
+            <span class="calc-val" id="calcPriceVal">S$1,200,000</span>
+          </div>
+          <input type="range" id="calcPrice" min="200000" max="5000000" step="10000" value="1200000">
+        </div>
+        <div class="calc-field">
+          <div class="calc-field-head">
+            <label for="calcDown">Down Payment</label>
+            <span class="calc-val" id="calcDownVal">25%</span>
+          </div>
+          <input type="range" id="calcDown" min="5" max="75" step="1" value="25">
+        </div>
+        <div class="calc-field">
+          <div class="calc-field-head">
+            <label for="calcRate">Interest Rate</label>
+            <span class="calc-val" id="calcRateVal">3.50%</span>
+          </div>
+          <input type="range" id="calcRate" min="1" max="6" step="0.05" value="3.5">
+        </div>
+        <div class="calc-field">
+          <div class="calc-field-head">
+            <label for="calcTenure">Loan Tenure</label>
+            <span class="calc-val" id="calcTenureVal">25 yrs</span>
+          </div>
+          <input type="range" id="calcTenure" min="5" max="35" step="1" value="25">
+        </div>
+      </div>
+      <div class="calc-results">
+        <div class="result-item primary">
+          <div class="result-label">Monthly Instalment</div>
+          <div class="result-value" id="resMonthly">S$0</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Loan Amount</div>
+          <div class="result-value" id="resLoan">S$0</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Total Interest</div>
+          <div class="result-value" id="resInterest">S$0</div>
+        </div>
+        <div class="result-item">
+          <div class="result-label">Total Repayment</div>
+          <div class="result-value" id="resTotal">S$0</div>
+        </div>
+      </div>
+    </div>
+    <p class="intel-disclaimer">This calculator provides an estimate only and excludes fees, stamp duties and TDSR/MSR limits. <a href="#contact">Speak with me</a> for a full affordability assessment.</p>
+  </div>
+
+  <div class="intel-panel reveal" id="panel-updates">
+    <h3 class="intel-panel-title">Latest <span class="accent">Market Updates</span></h3>
+    <div class="market-news-grid">
+      <div class="news-card card reveal">
+        <div class="news-date">July 2026</div>
+        <h3>Private Home Prices Edge Up as New Launches Draw Strong Demand</h3>
+        <p>Recent quarter data shows continued resilience in the core central region, with buyers favouring well-located, smaller-format units.</p>
+      </div>
+      <div class="news-card card reveal">
+        <div class="news-date">June 2026</div>
+        <h3>SORA Rates Stabilise, Offering Clarity for Refinancing</h3>
+        <p>With short-term rates holding steady, homeowners are revisiting fixed vs. floating packages ahead of their lock-in expiry.</p>
+      </div>
+      <div class="news-card card reveal">
+        <div class="news-date">June 2026</div>
+        <h3>HDB Resale Volumes Rise in Mature Estates</h3>
+        <p>Demand remains firm for resale flats near MRT lines and established amenities, keeping million-dollar transactions in the headlines.</p>
+      </div>
+    </div>
+    <p class="intel-disclaimer">Summaries are for general awareness only — <a href="#contact">reach out</a> for a tailored read on how current trends affect your property plans.</p>
+  </div>
+
+  <div class="intel-panel reveal" id="panel-live">
+    <h3 class="intel-panel-title">Live <span class="accent">Transactions</span></h3>
+    <div class="txn-controls">
+      <div class="txn-search-wrap">
+        <svg><use href="#icon-search"/></svg>
+        <input type="text" id="txnSearch" placeholder="Search by project name…" autocomplete="off">
+      </div>
+    </div>
+    <div class="txn-table-wrap card">
+      <table>
+        <thead>
+          <tr>
+            <th>Project</th>
+            <th>District</th>
+            <th>Price</th>
+            <th>Floor Area</th>
+            <th>PSF</th>
+            <th>Sale Date</th>
+          </tr>
+        </thead>
+        <tbody id="txnBody"></tbody>
+      </table>
+      <div class="txn-status" id="txnStatus">Loading latest transactions…</div>
+    </div>
+    <p class="txn-meta" id="txnMeta"></p>
+    <p class="intel-disclaimer">Transaction data is sourced from URA's REALIS Property Market Information API. <a href="#contact">Contact me</a> for a detailed read on any of these deals.</p>
+  </div>
+</section>
+
+<section class="testimonial" id="testimonial">
+  <div class="testimonial-card card reveal">
+    <div class="quote-mark">"</div>
+    <blockquote>
+      Yuna made what felt like an overwhelming decision completely manageable. Her advice was honest, sharp, and always focused on what mattered most to us.
+      <cite>— A. Tan, Homeowner</cite>
+    </blockquote>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2 class="section-title">Let's Find Your <span class="accent">Next Move</span></h2>
+  <p class="section-intro">Reach out for a no-obligation consultation about your property goals.</p>
+
+  <div class="contact-wrap">
+    <div class="contact-form-card card reveal">
+      <form class="contact-form" id="contactForm">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Tell me about your property goals..." required></textarea>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+        <div class="form-msg" id="formMsg"></div>
+      </form>
+    </div>
+
+    <div class="contact-info card reveal">
+      <div class="contact-info-item">
+        <span class="icon-wrap"><svg><use href="#icon-mail"/></svg></span>
+        <div>
+          <div class="label">Email</div>
+          <a class="value" href="mailto:yuna.sito@example.com">yuna.sito@example.com</a>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <span class="icon-wrap"><svg><use href="#icon-phone"/></svg></span>
+        <div>
+          <div class="label">Phone</div>
+          <a class="value" href="tel:+6596942445">+65 9694 2445</a>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <span class="icon-wrap"><svg><use href="#icon-pin"/></svg></span>
+        <div>
+          <div class="label">Location</div>
+          <div class="value">Singapore</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="logo"><span class="dot"></span>Yuna Sito</span>
+  <span>&copy; 2026 Yuna Sito Realty. All rights reserved.</span>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/6596942445" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-7.94 7.94c0 1.4.37 2.76 1.07 3.96L4 20l4.2-1.1a7.9 7.9 0 0 0 3.85 1h.01a7.94 7.94 0 0 0 7.94-7.93c0-2.12-.83-4.11-2.4-5.65zm-5.55 12.2h-.01a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.5.66.67-2.44-.16-.25a6.58 6.58 0 0 1-1.01-3.5 6.6 6.6 0 0 1 6.6-6.6 6.55 6.55 0 0 1 4.67 1.94 6.55 6.55 0 0 1 1.93 4.67 6.6 6.6 0 0 1-6.59 6.58zm3.6-4.93c-.2-.1-1.17-.58-1.35-.64-.18-.07-.32-.1-.45.1-.13.2-.5.64-.62.77-.11.13-.23.15-.43.05-.2-.1-.83-.3-1.58-.97a5.9 5.9 0 0 1-1.1-1.37c-.11-.2 0-.3.09-.4.1-.1.2-.23.3-.35.1-.11.13-.2.2-.33.06-.13.03-.25-.02-.35-.05-.1-.45-1.08-.62-1.48-.16-.39-.33-.34-.45-.34l-.38-.01c-.13 0-.35.05-.53.25s-.7.68-.7 1.65.72 1.92.82 2.05c.1.13 1.4 2.14 3.4 3 .48.2.85.33 1.14.42.48.15.92.13 1.26.08.39-.06 1.17-.48 1.34-.94.16-.46.16-.86.11-.94-.05-.08-.18-.13-.38-.23z"/>
+  </svg>
+</a>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+  navToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
+    navToggle.classList.toggle('active');
+  });
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navMenu.classList.remove('open'));
+  });
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Market Intel: sticky sub-nav offsets + scrollspy (section stays scrollable,
+  // clicking a header just jumps to that part of the page)
+  const intelTabs = document.querySelectorAll('.intel-tab');
+  const intelPanels = document.querySelectorAll('.intel-panel');
+
+  function setIntelOffsets() {
+    const headerH = header.offsetHeight;
+    document.documentElement.style.setProperty('--intel-tabs-top', headerH + 'px');
+  }
+  setIntelOffsets();
+  window.addEventListener('resize', setIntelOffsets);
+
+  intelTabs.forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = tab.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (!target) return;
+      const intelTabsEl = document.querySelector('.intel-tabs');
+      const offset = header.offsetHeight + (intelTabsEl ? intelTabsEl.offsetHeight : 0) + 24;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+
+  if (intelPanels.length) {
+    const spyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const key = entry.target.id.replace('panel-', '');
+          intelTabs.forEach(t => t.classList.toggle('active', t.dataset.tab === key));
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    intelPanels.forEach(p => spyObserver.observe(p));
+  }
+
+  // Rates "as of" date
+  const ratesDateEl = document.getElementById('ratesDate');
+  if (ratesDateEl) {
+    ratesDateEl.textContent = new Date().toLocaleDateString('en-SG', { month: 'long', year: 'numeric' });
+  }
+
+  // Mortgage calculator
+  const sgd = n => 'S$' + Math.round(n).toLocaleString('en-SG');
+  const priceInput = document.getElementById('calcPrice');
+  const downInput = document.getElementById('calcDown');
+  const rateInput = document.getElementById('calcRate');
+  const tenureInput = document.getElementById('calcTenure');
+
+  function calcMortgage() {
+    const price = Number(priceInput.value);
+    const downPct = Number(downInput.value);
+    const annualRate = Number(rateInput.value);
+    const years = Number(tenureInput.value);
+
+    document.getElementById('calcPriceVal').textContent = sgd(price);
+    document.getElementById('calcDownVal').textContent = downPct + '%';
+    document.getElementById('calcRateVal').textContent = annualRate.toFixed(2) + '%';
+    document.getElementById('calcTenureVal').textContent = years + ' yrs';
+
+    const loanAmount = price * (1 - downPct / 100);
+    const monthlyRate = annualRate / 100 / 12;
+    const numPayments = years * 12;
+
+    let monthly;
+    if (monthlyRate === 0) {
+      monthly = loanAmount / numPayments;
+    } else {
+      monthly = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, numPayments) /
+                (Math.pow(1 + monthlyRate, numPayments) - 1);
+    }
+    const totalRepayment = monthly * numPayments;
+    const totalInterest = totalRepayment - loanAmount;
+
+    document.getElementById('resLoan').textContent = sgd(loanAmount);
+    document.getElementById('resMonthly').textContent = sgd(monthly);
+    document.getElementById('resInterest').textContent = sgd(totalInterest);
+    document.getElementById('resTotal').textContent = sgd(totalRepayment);
+  }
+
+  [priceInput, downInput, rateInput, tenureInput].forEach(input => {
+    if (input) input.addEventListener('input', calcMortgage);
+  });
+  if (priceInput) calcMortgage();
+
+  // Live Transactions (fetched from the Netlify function proxying URA's API)
+  (function initLiveTransactions() {
+    const tbody = document.getElementById('txnBody');
+    if (!tbody) return;
+
+    const statusEl = document.getElementById('txnStatus');
+    const metaEl = document.getElementById('txnMeta');
+    const searchInput = document.getElementById('txnSearch');
+    const MAX_ROWS_SHOWN = 200;
+    let allRows = [];
+
+    const sgd = n => (isFinite(n) ? 'S$' + Math.round(n).toLocaleString('en-SG') : '—');
+
+    function formatContractDate(mmyy) {
+      if (!mmyy || mmyy.length !== 4) return '—';
+      const months = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const m = months[parseInt(mmyy.slice(0, 2), 10)] || mmyy.slice(0, 2);
+      return `${m} 20${mmyy.slice(2, 4)}`;
+    }
+
+    function showStatus(text) {
+      statusEl.textContent = text;
+      statusEl.style.display = 'block';
+      tbody.innerHTML = '';
+    }
+
+    function renderRows(rows, totalCount) {
+      if (!rows.length) {
+        showStatus('No matching transactions found.');
+        metaEl.textContent = '';
+        return;
+      }
+      statusEl.style.display = 'none';
+      const shown = rows.slice(0, MAX_ROWS_SHOWN);
+      tbody.innerHTML = shown.map(r => `
+        <tr>
+          <td>${r.project}</td>
+          <td>${r.district}</td>
+          <td>${sgd(r.price)}</td>
+          <td>${r.area ? r.area.toLocaleString('en-SG') + ' sqm' : '—'}</td>
+          <td>${r.psf ? sgd(r.psf) : '—'}</td>
+          <td>${formatContractDate(r.contractDate)}</td>
+        </tr>
+      `).join('');
+      metaEl.textContent = `Showing ${shown.length} of ${totalCount} transaction${totalCount === 1 ? '' : 's'}`;
+    }
+
+    async function loadTransactions() {
+      showStatus('Loading latest transactions…');
+      try {
+        const res = await fetch('/.netlify/functions/ura');
+        const payload = await res.json();
+        if (!res.ok) throw new Error(payload.error || `Request failed (${res.status})`);
+
+        const items = Array.isArray(payload) ? payload : (payload.Result || []);
+        items.forEach(item => {
+          const project = item.project || 'Unknown Project';
+          const txns = item.transaction || [];
+          txns.forEach(t => {
+            const area = Number(t.area);
+            const price = Number(t.price);
+            const psf = (isFinite(area) && area > 0 && isFinite(price)) ? price / (area * 10.7639) : null;
+            allRows.push({
+              project,
+              district: t.district || '—',
+              price: isFinite(price) ? price : null,
+              area: isFinite(area) ? area : null,
+              psf,
+              contractDate: t.contractDate || '',
+            });
+          });
+        });
+
+        // newest sale date first
+        allRows.sort((a, b) => {
+          const keyOf = d => (d && d.length === 4) ? d.slice(2, 4) + d.slice(0, 2) : '';
+          return keyOf(b.contractDate).localeCompare(keyOf(a.contractDate));
+        });
+
+        if (!allRows.length) {
+          showStatus('No transaction data available right now.');
+          return;
+        }
+
+        renderRows(allRows, allRows.length);
+      } catch (err) {
+        showStatus('Unable to load live transaction data right now. Please try again later.');
+        metaEl.textContent = '';
+        console.error('URA transactions error:', err);
+      }
+    }
+
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.trim().toLowerCase();
+      const filtered = q ? allRows.filter(r => r.project.toLowerCase().includes(q)) : allRows;
+      renderRows(filtered, filtered.length);
+    });
+
+    loadTransactions();
+  })();
+
+  // Video gallery: click to play inline, pause others when one starts
+  const videoCards = document.querySelectorAll('.video-card');
+  videoCards.forEach(card => {
+    const video = card.querySelector('video');
+    const overlay = card.querySelector('.video-overlay');
+    overlay.addEventListener('click', () => {
+      videoCards.forEach(other => {
+        if (other !== card) {
+          other.classList.remove('playing');
+          other.querySelector('video').pause();
+        }
+      });
+      card.classList.add('playing');
+      video.controls = true;
+      video.play();
+    });
+    video.addEventListener('pause', () => {
+      if (video.currentTime === 0) card.classList.remove('playing');
+    });
+  });
+
+  // Contact form (front-end only demo)
+  const form = document.getElementById('contactForm');
+  const formMsg = document.getElementById('formMsg');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    formMsg.textContent = "Thank you — I'll be in touch within 24 hours.";
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
