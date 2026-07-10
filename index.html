@@ -1535,8 +1535,14 @@
           <td>${formatContractDate(r.contractDate)}</td>
         </tr>
       `).join('');
-      metaEl.textContent = `Showing ${shown.length} of ${totalCount} transaction${totalCount === 1 ? '' : 's'}`;
+      let meta = `Showing ${shown.length} of ${totalCount} transaction${totalCount === 1 ? '' : 's'}`;
+      if (totalCount === allRows.length && totalAvailable > allRows.length) {
+        meta += ` (most recent of ${totalAvailable.toLocaleString('en-SG')} total this period)`;
+      }
+      metaEl.textContent = meta;
     }
+
+    let totalAvailable = 0;
 
     async function loadTransactions() {
       showStatus('Loading latest transactions…');
@@ -1545,29 +1551,21 @@
         const payload = await res.json();
         if (!res.ok) throw new Error(payload.error || `Request failed (${res.status})`);
 
-        const items = Array.isArray(payload) ? payload : (payload.Result || []);
-        items.forEach(item => {
-          const project = item.project || 'Unknown Project';
-          const txns = item.transaction || [];
-          txns.forEach(t => {
-            const area = Number(t.area);
-            const price = Number(t.price);
-            const psf = (isFinite(area) && area > 0 && isFinite(price)) ? price / (area * 10.7639) : null;
-            allRows.push({
-              project,
-              district: t.district || '—',
-              price: isFinite(price) ? price : null,
-              area: isFinite(area) ? area : null,
-              psf,
-              contractDate: t.contractDate || '',
-            });
-          });
-        });
-
-        // newest sale date first
-        allRows.sort((a, b) => {
-          const keyOf = d => (d && d.length === 4) ? d.slice(2, 4) + d.slice(0, 2) : '';
-          return keyOf(b.contractDate).localeCompare(keyOf(a.contractDate));
+        // The function already flattens, sorts (newest first), and trims
+        // this server-side, so the browser only handles a small payload.
+        totalAvailable = payload.total || 0;
+        allRows = (payload.transactions || []).map(t => {
+          const area = Number(t.area);
+          const price = Number(t.price);
+          const psf = (isFinite(area) && area > 0 && isFinite(price)) ? price / (area * 10.7639) : null;
+          return {
+            project: t.project || 'Unknown Project',
+            district: t.district || '—',
+            price: isFinite(price) ? price : null,
+            area: isFinite(area) ? area : null,
+            psf,
+            contractDate: t.contractDate || '',
+          };
         });
 
         if (!allRows.length) {

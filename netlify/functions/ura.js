@@ -8,6 +8,36 @@
 const TOKEN_URL = 'https://eservice.ura.gov.sg/uraDataService/insertNewToken/v1';
 const DATA_URL = 'https://eservice.ura.gov.sg/uraDataService/invokeUraDS/v1?service=PMI_Resi_Transaction&batch=1';
 
+// URA's batch response covers a full year of Singapore-wide transactions
+// (tens of thousands of records, several MB) — far more than a browser
+// widget needs. Flatten it and keep only the most recent MAX_TRANSACTIONS
+// so the response stays small and fast to fetch/parse client-side.
+const MAX_TRANSACTIONS = 500;
+
+function flattenAndTrim(data) {
+  const items = Array.isArray(data.Result) ? data.Result : [];
+  const flat = [];
+  items.forEach((item) => {
+    const project = item.project || 'Unknown Project';
+    (item.transaction || []).forEach((t) => {
+      flat.push({
+        project,
+        district: t.district || null,
+        price: Number(t.price) || null,
+        area: Number(t.area) || null,
+        contractDate: t.contractDate || null,
+      });
+    });
+  });
+
+  flat.sort((a, b) => {
+    const keyOf = (d) => (d && d.length === 4 ? d.slice(2, 4) + d.slice(0, 2) : '');
+    return keyOf(b.contractDate).localeCompare(keyOf(a.contractDate));
+  });
+
+  return { total: flat.length, transactions: flat.slice(0, MAX_TRANSACTIONS) };
+}
+
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, OPTIONS',
@@ -49,11 +79,12 @@ exports.handler = async function handler(event) {
       throw new Error(`URA data request failed: ${dataRes.status} ${dataRes.statusText}`);
     }
     const data = await dataRes.json();
+    const trimmed = flattenAndTrim(data);
 
     return {
       statusCode: 200,
       headers: CORS_HEADERS,
-      body: JSON.stringify(data),
+      body: JSON.stringify(trimmed),
     };
   } catch (err) {
     return {
