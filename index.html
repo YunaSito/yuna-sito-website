@@ -1499,6 +1499,7 @@
     const statusEl = document.getElementById('txnStatus');
     const metaEl = document.getElementById('txnMeta');
     const searchInput = document.getElementById('txnSearch');
+    const DEFAULT_ROWS_SHOWN = 8;
     const MAX_ROWS_SHOWN = 200;
     let allRows = [];
 
@@ -1524,7 +1525,9 @@
         return;
       }
       statusEl.style.display = 'none';
-      const shown = rows.slice(0, MAX_ROWS_SHOWN);
+      const isSearching = searchInput.value.trim().length > 0;
+      const limit = isSearching ? MAX_ROWS_SHOWN : DEFAULT_ROWS_SHOWN;
+      const shown = rows.slice(0, limit);
       tbody.innerHTML = shown.map(r => `
         <tr>
           <td>${r.project}</td>
@@ -1536,6 +1539,9 @@
         </tr>
       `).join('');
       let meta = `Showing ${shown.length} of ${totalCount} transaction${totalCount === 1 ? '' : 's'}`;
+      if (!isSearching && totalCount > shown.length) {
+        meta += ' — search by project name to see more';
+      }
       if (totalCount === allRows.length && totalAvailable > allRows.length) {
         meta += ` (most recent of ${totalAvailable.toLocaleString('en-SG')} total this period)`;
       }
