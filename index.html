@@ -400,7 +400,7 @@
   /* VIDEOS */
   .videos-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns:repeat(3, 1fr);
     gap:1.4rem;
   }
   .video-card{
@@ -920,6 +920,10 @@
     .about-wrap{grid-template-columns:1fr;}
     .services-grid{grid-template-columns:1fr;}
     .contact-wrap{grid-template-columns:1fr;}
+    .videos-grid{grid-template-columns:repeat(2, 1fr);}
+  }
+  @media (max-width:480px){
+    .videos-grid{grid-template-columns:1fr; max-width:280px; margin:0 auto;}
   }
   @media (max-width:720px){
     nav ul{
@@ -1342,7 +1346,7 @@
         <span class="icon-wrap"><svg><use href="#icon-mail"/></svg></span>
         <div>
           <div class="label">Email</div>
-          <a class="value" href="mailto:yuna.sito@example.com">yuna.sito@example.com</a>
+          <a class="value" href="mailto:yuyanyysito@gmail.com">yuyanyysito@gmail.com</a>
         </div>
       </div>
       <div class="contact-info-item">
