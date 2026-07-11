@@ -355,13 +355,34 @@
     gap:1.4rem;
     align-items:start;
   }
-  .instagram-embed-wrap{
-    width:100%;
-    display:flex;
-    justify-content:center;
+  .ig-post-card{
     overflow:hidden;
-    border-radius:var(--radius-lg);
+    display:flex;
+    flex-direction:column;
   }
+  .ig-post-card img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    display:block;
+  }
+  .ig-post-caption{
+    padding:1.6rem;
+  }
+  .ig-post-caption p{
+    font-size:0.9rem;
+    line-height:1.6;
+    color:var(--text-muted);
+  }
+  .ig-hashtags{color:var(--gold-dark); font-weight:600;}
+  .ig-post-link{
+    display:inline-block;
+    margin-top:1rem;
+    font-size:0.85rem;
+    font-weight:600;
+    color:var(--gold-dark);
+  }
+  .ig-post-link:hover{color:var(--gold);}
   .section-intro a{color:var(--gold-dark); font-weight:600;}
 
   /* VIDEOS */
@@ -1044,18 +1065,41 @@
   <h2 class="section-title">Pinned on <span class="accent">Instagram</span></h2>
   <p class="section-intro">A few highlights from my Instagram — follow <a href="https://www.instagram.com/yuna_sito555/" target="_blank" rel="noopener">@yuna_sito555</a> for more.</p>
   <div class="instagram-grid">
-    <div class="instagram-embed-wrap reveal">
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXo_VS7EeXa/" data-instgrm-version="14"></blockquote>
+    <div class="ig-post-card card reveal">
+      <img src="images/ig-post-1.jpg" alt="Instagram post: Tengah Garden Residences">
+      <div class="ig-post-caption">
+        <p>Secured a 3 bedroom at Tengah Garden Residences for our client!! 🏡✨<br>
+        Glad that they managed to get their first choice unit especially with the project being oversubscribed x2 !!<br><br>
+        It wasn't the easiest journey with tight timelines and decisions to be made, but glad we worked through it together and stay firm to go for their preferred unit 💪<br><br>
+        Thank you for the trust throughout the whole process, truly appreciate it!<br><br>
+        Also big thanks to @sethngsr for the tag and guidance along the way 🙏<br>
+        More to come!! 🚀<br>
+        <span class="ig-hashtags">#tengahgardenresidences #newlaunch #3bedroom</span></p>
+        <a class="ig-post-link" href="https://www.instagram.com/p/DXo_VS7EeXa/" target="_blank" rel="noopener">View on Instagram →</a>
+      </div>
     </div>
-    <div class="instagram-embed-wrap reveal">
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DY175d_EV8N/" data-instgrm-version="14"></blockquote>
+    <div class="ig-post-card card reveal">
+      <img src="images/ig-post-2.jpg" alt="Instagram post: a month to remember">
+      <div class="ig-post-caption">
+        <p>A month to remember ✨<br><br>
+        Super thankful for our clients who decided to trust us with their very first new launch purchase!!<br><br>
+        Grateful to be part of such an important milestone !! MORE TO COME !! ❤️</p>
+        <a class="ig-post-link" href="https://www.instagram.com/p/DY175d_EV8N/" target="_blank" rel="noopener">View on Instagram →</a>
+      </div>
     </div>
-    <div class="instagram-embed-wrap reveal">
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWPw-qdEySf/" data-instgrm-version="14"></blockquote>
+    <div class="ig-post-card card reveal">
+      <img src="images/ig-post-3.jpg" alt="Instagram post: Northwest Service Week">
+      <div class="ig-post-caption">
+        <p>Northwest Service Week !!<br>
+        Grateful to be doing this together with my brothers and the PG volunteers!!<br>
+        Giving back to the community always reminds us how small actions can make a big difference.<br>
+        Definitely something we are happy to be part of again 🙌✨<br>
+        <span class="ig-hashtags">#ServiceWeek #GivingBack</span></p>
+        <a class="ig-post-link" href="https://www.instagram.com/p/DWPw-qdEySf/" target="_blank" rel="noopener">View on Instagram →</a>
+      </div>
     </div>
   </div>
 </section>
-<script async src="//www.instagram.com/embed.js"></script>
 
 <section id="videos">
   <div class="section-label">On TikTok</div>
