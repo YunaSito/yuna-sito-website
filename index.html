@@ -348,6 +348,22 @@
     color:var(--text-muted);
   }
 
+  /* INSTAGRAM */
+  .instagram-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1.4rem;
+    align-items:start;
+  }
+  .instagram-embed-wrap{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    overflow:hidden;
+    border-radius:var(--radius-lg);
+  }
+  .section-intro a{color:var(--gold-dark); font-weight:600;}
+
   /* VIDEOS */
   .videos-grid{
     display:grid;
@@ -891,6 +907,7 @@
     .services-grid{grid-template-columns:1fr;}
     .contact-wrap{grid-template-columns:1fr;}
     .videos-grid{grid-template-columns:repeat(2, 1fr);}
+    .instagram-grid{grid-template-columns:1fr; max-width:420px; margin:0 auto;}
   }
   @media (max-width:480px){
     .videos-grid{grid-template-columns:1fr; max-width:280px; margin:0 auto;}
@@ -1021,6 +1038,24 @@
     </div>
   </div>
 </section>
+
+<section id="instagram-highlights">
+  <div class="section-label">Instagram</div>
+  <h2 class="section-title">Pinned on <span class="accent">Instagram</span></h2>
+  <p class="section-intro">A few highlights from my Instagram — follow <a href="https://www.instagram.com/yuna_sito555/" target="_blank" rel="noopener">@yuna_sito555</a> for more.</p>
+  <div class="instagram-grid">
+    <div class="instagram-embed-wrap reveal">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXo_VS7EeXa/" data-instgrm-version="14"></blockquote>
+    </div>
+    <div class="instagram-embed-wrap reveal">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DY175d_EV8N/" data-instgrm-version="14"></blockquote>
+    </div>
+    <div class="instagram-embed-wrap reveal">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWPw-qdEySf/" data-instgrm-version="14"></blockquote>
+    </div>
+  </div>
+</section>
+<script async src="//www.instagram.com/embed.js"></script>
 
 <section id="videos">
   <div class="section-label">On TikTok</div>
